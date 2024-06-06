@@ -9,16 +9,16 @@ Run this lambda function every x minutes to check if the IPs of the loadbalancer
 
 To use this plugin:
 
-* Clone this repo: git clone
+* Clone this repo
 * Set the following parameters at the top of lambda_function.py
-    * EVENT_NAME -> CloudWatch-Event name the function listens to **(Must Not have any other targets than this lambda function)**
-    * HOSTED_ZONE_ID -> The route53 hosted zone where entries get updated
-    * DNS_MAPPING -> Mapping of public hostnames to private hostnames for domains which should be created / updated
+    * `EVENT_NAME` -> CloudWatch-Event name the function listens to<br>**(Must Not have any other targets than this lambda function)**
+    * `HOSTED_ZONE_ID` -> The route53 hosted zone where entries get updated
+    * `DNS_MAPPING` -> Mapping of public hostnames to private hostnames for domains which should be created / updated
 * run `zip -r -X '../updateprivateELBrecord.zip' lambda_function.py` from the repository root to create a zipfile with all content to upload to Lambda
 * Create a function on AWS for Lambda and update the zip file
 * Create a cloudwatch event that runs the lambda at the desired interval (make sure the name of the event matches the parameter in index.js)
 
-**Notice**: The first times it will run slow and take about 5 seconds to complete.
+**Notice**: The first time it will run slow and take about 5 seconds to complete.
 
 ## IAM Setting
 
